@@ -19,6 +19,7 @@
 		611F99E62A01A0AB002A0AA6 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611F99E52A01A0AB002A0AA6 /* MenuItem.swift */; };
 		611F99E82A01A2BD002A0AA6 /* ResponseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611F99E72A01A2BD002A0AA6 /* ResponseModels.swift */; };
 		611F99EA2A01A43C002A0AA6 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611F99E92A01A43C002A0AA6 /* Order.swift */; };
+		611F99EC2A01A698002A0AA6 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611F99EB2A01A698002A0AA6 /* MenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		611F99E52A01A0AB002A0AA6 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		611F99E72A01A2BD002A0AA6 /* ResponseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModels.swift; sourceTree = "<group>"; };
 		611F99E92A01A43C002A0AA6 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		611F99EB2A01A698002A0AA6 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				611F99CF2A015A16002A0AA6 /* Main.storyboard */,
 				611F99E72A01A2BD002A0AA6 /* ResponseModels.swift */,
 				611F99E92A01A43C002A0AA6 /* Order.swift */,
+				611F99EB2A01A698002A0AA6 /* MenuController.swift */,
 				611F99E52A01A0AB002A0AA6 /* MenuItem.swift */,
 				611F99E32A019FEA002A0AA6 /* MenuItemDetailViewController.swift */,
 				611F99DD2A019B61002A0AA6 /* CategoryTableViewController.swift */,
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				611F99EC2A01A698002A0AA6 /* MenuController.swift in Sources */,
 				611F99E62A01A0AB002A0AA6 /* MenuItem.swift in Sources */,
 				611F99E02A019B73002A0AA6 /* MenuTableViewController.swift in Sources */,
 				611F99E82A01A2BD002A0AA6 /* ResponseModels.swift in Sources */,
