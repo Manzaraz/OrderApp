@@ -19,7 +19,7 @@ class CategoryTableViewController: UITableViewController {
 
         Task.init {
             do {
-                let categories = try await menuController.fetchCategories()
+                let categories = try await MenuController.shared.fetchCategories() // menuController.fetchCategories()
                 updateUI(with: categories)
             } catch {
                 displayError(error, title: "Error al ir a buscar las categorias")
