@@ -11,9 +11,7 @@ import UIKit
 class CategoryTableViewController: UITableViewController {
     let menuController = MenuController()
     var categories = [String]()
-    
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 

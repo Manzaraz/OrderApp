@@ -104,10 +104,70 @@
                     <view key="view" contentMode="scaleToFill" id="Bf2-oS-Sp1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vNu-g0-hYL">
+                                <rect key="frame" x="15" y="170.00000000000003" width="363" height="269.66666666666674"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Jwe-cs-Z2L">
+                                        <rect key="frame" x="0.0" y="0.6666666666666714" width="363" height="211.66666666666669"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dsH-Gk-swa">
+                                        <rect key="frame" x="0.0" y="221" width="363" height="20.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRg-uU-cIC">
+                                                <rect key="frame" x="0.0" y="0.0" width="313.66666666666669" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfu-qa-RiR">
+                                                <rect key="frame" x="321.66666666666669" y="0.0" width="41.333333333333314" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK5-9h-zT9">
+                                        <rect key="frame" x="0.0" y="249.33333333333334" width="363" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vra-Ld-NUB">
+                                <rect key="frame" x="15" y="710" width="363" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fzF-4E-xaB"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Agregá a tu Órden"/>
+                                <connections>
+                                    <action selector="orderButtonTapped:" destination="Igh-yL-PYo" eventType="touchUpInside" id="NLl-3E-o2d"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="NJK-1r-tbP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NJK-1r-tbP" firstAttribute="bottom" secondItem="vra-Ld-NUB" secondAttribute="bottom" constant="15" id="EM2-mt-sDA"/>
+                            <constraint firstItem="vNu-g0-hYL" firstAttribute="top" secondItem="NJK-1r-tbP" secondAttribute="top" constant="15" id="JSE-j1-sjk"/>
+                            <constraint firstItem="vra-Ld-NUB" firstAttribute="leading" secondItem="NJK-1r-tbP" secondAttribute="leading" constant="15" id="MnS-Vd-Qmg"/>
+                            <constraint firstItem="NJK-1r-tbP" firstAttribute="trailing" secondItem="vNu-g0-hYL" secondAttribute="trailing" constant="15" id="OQ7-LW-zqR"/>
+                            <constraint firstItem="NJK-1r-tbP" firstAttribute="trailing" secondItem="vra-Ld-NUB" secondAttribute="trailing" constant="15" id="bDF-0C-XLr"/>
+                            <constraint firstItem="Jwe-cs-Z2L" firstAttribute="height" secondItem="Bf2-oS-Sp1" secondAttribute="height" multiplier="0.25" id="ooE-6P-ITC"/>
+                            <constraint firstItem="vNu-g0-hYL" firstAttribute="leading" secondItem="NJK-1r-tbP" secondAttribute="leading" constant="15" id="xDc-n4-PUp"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xcH-bg-pyM"/>
+                    <connections>
+                        <outlet property="addToOrderButton" destination="vra-Ld-NUB" id="gqx-87-Xcs"/>
+                        <outlet property="detailTextLabel" destination="bK5-9h-zT9" id="mBN-YE-geu"/>
+                        <outlet property="imageView" destination="Jwe-cs-Z2L" id="rld-4G-Ugd"/>
+                        <outlet property="nameLabel" destination="qRg-uU-cIC" id="iyN-al-MIv"/>
+                        <outlet property="priceLabel" destination="kfu-qa-RiR" id="7Ej-tS-q4Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSm-hU-8VW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,6 +242,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Yeb-JP-s5d" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="feW-lc-Pkt">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -198,6 +259,7 @@
     <resources>
         <image name="bag" catalog="system" width="128" height="128"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
