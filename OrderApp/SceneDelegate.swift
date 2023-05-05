@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var orderTabBarItem: UITabBarItem!
+    
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -17,6 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateOrderBadge), name: MenuController.orderUpdatedNotification, object: nil)
+        
+        orderTabBarItem = (window?.rootViewController as?  UITabBarController)?.viewControllers?[1].tabBarItem
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,6 +54,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    @objc func updateOrderBadge() {
+        
+        switch MenuController.shared.order.menuItems.count {
+        case 0:
+            orderTabBarItem.badgeValue = nil
+        case let count:
+            orderTabBarItem.badgeValue = String(count)
+        }
+    }
 
 }
 
