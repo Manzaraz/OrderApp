@@ -10,6 +10,7 @@ import UIKit
 class OrderTableViewController: UITableViewController {
     
     var order = Order()
+    var minutesToPrepareOrder = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,58 @@ class OrderTableViewController: UITableViewController {
         return 1
     }
 
+    @IBSegueAction func confirmOrder(_ coder: NSCoder) -> OrderConfirmationViewController? {
+        return OrderConfirmationViewController(coder: coder, minutesToPrepare: minutesToPrepareOrder)
+    }
+    
+    @IBAction func unwindToOrderList(_ segue: UIStoryboardSegue) {
+        if segue.identifier == "dismissConfirmation" {
+            MenuController.shared.order.menuItems.removeAll()
+        }
+    }
+    
+    @IBAction func submitTapped(_ sender: Any) {
+        let orderTotal = MenuController.shared.order.menuItems.reduce(0.0) { (result, menuItem) -> Double in
+            return result + menuItem.price
+        }
+        
+        let formattedTotal = orderTotal.formatted(.currency(code: "usd"))
+        
+        let alertController = UIAlertController(title: "Confirmar Órden", message: "Está a punto de enviar su pedido por un total de \(formattedTotal)", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Enviar", style: .default, handler: { _ in
+            self.uploadOrder()
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func uploadOrder() {
+        let  menuIds = MenuController.shared.order.menuItems.map { $0.id }
+        Task.init {
+            do {
+                let minutesToPrepare = try await MenuController.shared.submitOrder(forMenuIDs: menuIds)
+                minutesToPrepareOrder = minutesToPrepare
+                performSegue(withIdentifier: "confirmOrder", sender: nil)
+            } catch {
+                displayError(error, title: "Envío de Pedido Fallido")
+            }
+        }
+        
+    }
+    
+    func displayError(_ error: Error, title: String) {
+        guard let _ = viewIfLoaded?.window else { return }
+        
+        let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Descartar", style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 //        return order.menuItems.count

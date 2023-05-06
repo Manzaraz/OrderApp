@@ -173,7 +173,7 @@
             </objects>
             <point key="canvasLocation" x="3334" y="-169"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Order-->
         <scene sceneID="SP0-qj-JaZ">
             <objects>
                 <tableViewController id="hlD-mC-Rpt" customClass="OrderTableViewController" customModule="OrderApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -212,11 +212,65 @@
                             <outlet property="delegate" destination="hlD-mC-Rpt" id="UyA-AV-7qf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="sLB-Jg-iMv"/>
+                    <navigationItem key="navigationItem" title="Order" id="sLB-Jg-iMv">
+                        <barButtonItem key="rightBarButtonItem" title="Enviar" id="eTV-ar-1M4">
+                            <connections>
+                                <action selector="submitTapped:" destination="hlD-mC-Rpt" id="t8z-lZ-Tqh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="5eo-K7-e8l" kind="presentation" identifier="confirmOrder" destinationCreationSelector="confirmOrder:" id="3iG-D5-1N4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="297-ls-aGT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1399.2366412213739" y="569.71830985915494"/>
+        </scene>
+        <!--Order Confirmation View Controller-->
+        <scene sceneID="kT5-Hs-umX">
+            <objects>
+                <viewController id="5eo-K7-e8l" customClass="OrderConfirmationViewController" customModule="OrderApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mdh-C4-tHe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="nU7-wV-7RZ">
+                                <rect key="frame" x="15" y="348" width="363" height="146.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Gracias por tu órden! Tu espera será aproximadamente de 15 minutos." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMn-0V-e5C">
+                                        <rect key="frame" x="30" y="0.0" width="303" height="42"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBx-F3-haT">
+                                        <rect key="frame" x="132.33333333333334" y="111.99999999999999" width="98.666666666666657" height="34.333333333333329"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Descartar"/>
+                                        <connections>
+                                            <segue destination="hyQ-qG-Vwg" kind="unwind" identifier="dismissConfirmation" unwindAction="unwindToOrderList:" id="1WA-Ta-c7r"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tlo-JD-42v"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nU7-wV-7RZ" firstAttribute="leading" secondItem="Tlo-JD-42v" secondAttribute="leading" constant="15" id="9mf-Lp-waC"/>
+                            <constraint firstItem="nU7-wV-7RZ" firstAttribute="centerY" secondItem="mdh-C4-tHe" secondAttribute="centerY" id="b9t-h9-Ra1"/>
+                            <constraint firstAttribute="trailing" secondItem="nU7-wV-7RZ" secondAttribute="trailing" constant="15" id="p12-6n-K8b"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmationLabel" destination="rMn-0V-e5C" id="Kqa-D6-tN8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vki-yZ-abL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="hyQ-qG-Vwg" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2380.9160305343512" y="569.71830985915494"/>
         </scene>
         <!--Tu órden-->
         <scene sceneID="urj-Dh-mqT">

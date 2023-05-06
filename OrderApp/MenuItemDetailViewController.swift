@@ -16,7 +16,6 @@ class MenuItemDetailViewController: UIViewController {
     @IBOutlet var detailTextLabel: UILabel!
     @IBOutlet var addToOrderButton: UIButton!
     
-    
     let menuItem: MenuItem
     
     init?(coder: NSCoder, menuItem: MenuItem) {
