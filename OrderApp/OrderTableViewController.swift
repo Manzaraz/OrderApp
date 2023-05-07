@@ -95,12 +95,13 @@ class OrderTableViewController: UITableViewController {
     }
     
     func configure(_ cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-//        let menuItem = order.menuItems[indexPath.row]
+        
         let menuItem = MenuController.shared.order.menuItems[indexPath.row]
         
         var content = cell.defaultContentConfiguration()
         content.text = menuItem.name
         content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
+        content.image = UIImage(systemName: "photo.on.rectangle")
         cell.contentConfiguration = content
         
     }
