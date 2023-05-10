@@ -11,12 +11,19 @@ class OrderTableViewController: UITableViewController {
     
     var order = Order()
     var minutesToPrepareOrder = 0
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
 
         NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: MenuController.orderUpdatedNotification, object: nil)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // Cancel image fetching tasks that are no longer needed
+        imageLoadTasks.forEach { key, value in value.cancel() }
     }
 
     // MARK: - Table view data source
@@ -95,15 +102,27 @@ class OrderTableViewController: UITableViewController {
     }
     
     func configure(_ cell: UITableViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? MenuItemCell else { return }
         
         let menuItem = MenuController.shared.order.menuItems[indexPath.row]
         
-        var content = cell.defaultContentConfiguration()
-        content.text = menuItem.name
-        content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
-        content.image = UIImage(systemName: "photo.on.rectangle")
-        cell.contentConfiguration = content
         
+        cell.itemName = menuItem.name
+        cell.price = menuItem.price
+        cell.image = nil
+        
+        imageLoadTasks[indexPath] = Task.init {
+            if let image = try? await MenuController.shared.fetchImage(from: menuItem.imageURL) {
+                // Image was returned
+                if
+                    let currentIndexPath = self.tableView.indexPath(for: cell),
+                    currentIndexPath == indexPath
+                {
+                    cell.image = image
+                }
+            }
+            imageLoadTasks[indexPath] = nil
+        }
     }
     
     // Override to support conditional editing of the table view.
@@ -121,6 +140,10 @@ class OrderTableViewController: UITableViewController {
 //        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
+    }
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Cancel the image fetching task if it's no longer needed
+        imageLoadTasks[indexPath]?.cancel()
     }
 
     /*
