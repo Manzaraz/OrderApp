@@ -28,6 +28,7 @@ class MenuTableViewController: UITableViewController {
         super.viewDidLoad()
 
         title = category.capitalized
+        tableView.rowHeight = 40
         
         Task.init {
             do {

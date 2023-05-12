@@ -145,6 +145,9 @@ class OrderTableViewController: UITableViewController {
         // Cancel the image fetching task if it's no longer needed
         imageLoadTasks[indexPath]?.cancel()
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
 
     /*
     // Override to support rearranging the table view.
