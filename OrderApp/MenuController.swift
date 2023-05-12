@@ -16,6 +16,7 @@ class MenuController {
         case imageDataMissing
     }
     
+    
     static let shared = MenuController()
 
     static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
@@ -23,10 +24,12 @@ class MenuController {
     var order = Order() {
         didSet {
             NotificationCenter.default.post(name: MenuController.orderUpdatedNotification, object: nil)
+            userActivity.order = order
         }
     }
     
-
+    var userActivity = NSUserActivity(activityType: "com.example.OrderApp.order")
+    
     
     let baseURL = URL(string: "http://localhost:8080/")!
     

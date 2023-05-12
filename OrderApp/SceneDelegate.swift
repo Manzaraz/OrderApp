@@ -61,6 +61,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             orderTabBarItem.badgeValue = String(count)
         }
     }
+    
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        return MenuController.shared.userActivity
+    }
+    
+    func scene(_ scene: UIScene, restoreInteractionStateWith stateRestorationActivity: NSUserActivity ) {
+        if let restoreOrder = stateRestorationActivity.order {
+            MenuController.shared.order = restoreOrder
+        }
+    }
 
 }
 
