@@ -21,6 +21,8 @@ class MenuController {
 
     static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
     
+    let baseURL = URL(string: "http://localhost:8080/")!
+    
     var order = Order() {
         didSet {
             NotificationCenter.default.post(name: MenuController.orderUpdatedNotification, object: nil)
@@ -30,9 +32,18 @@ class MenuController {
     
     var userActivity = NSUserActivity(activityType: "com.example.OrderApp.order")
     
-    
-    let baseURL = URL(string: "http://localhost:8080/")!
-    
+    func updateUserActivity(with controller: StateRestorationController) {
+        switch controller {
+        case .menu(let category):
+            userActivity.menuCategory = category
+        case .menuItemDetail(let menuItem):
+            userActivity.menuItem = menuItem
+        case .order, .categories:
+            break
+        }
+
+        userActivity.controllerIdentifier = controller.identifier
+    }
     /// First request /categories
     func fetchCategories() async throws -> [String] {
         let categoriesURL = baseURL.appendingPathComponent("categories")
@@ -109,4 +120,7 @@ class MenuController {
         
         return image
     }
+
+    
+    
 }
